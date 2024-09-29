@@ -10,10 +10,10 @@ import java.util.List;
 public class RigidBody {
 
     private List<Force> forces = new ArrayList<>();
-    private final Shape2D shape;
+    private final Shape2D shape2D;
 
-    public RigidBody(Shape2D shape) {
-        this.shape = shape;
+    public RigidBody(Shape2D shape2D) {
+        this.shape2D = shape2D;
     }
 
     public void instanciate() {
@@ -22,7 +22,7 @@ public class RigidBody {
 
     public void applyForces(int deltaTime) {
         for (Force force : forces) {
-            force.apply(getShape().getBody(), deltaTime);
+            force.apply(getShape2D().getBody(), deltaTime);
         }
     }
 
@@ -33,8 +33,8 @@ public class RigidBody {
     public List<Force> getForces() {
         return forces;
     }
-    public Shape2D getShape() {
-        return shape;
-    }
 
+    public Shape2D getShape2D() {
+        return shape2D;
+    }
 }

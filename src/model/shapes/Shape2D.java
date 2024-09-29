@@ -13,12 +13,14 @@ public abstract class Shape2D {
         setShape(width, height);
     }
 
-    public abstract void draw(Graphics g);
+    public abstract void draw(Graphics2D g);
 
     public abstract void setShape(int width, int height);
 
     public Body getBody() {
         return body;
     }
-
+    public Shape getShape() {
+        return shape;
+    }
 }

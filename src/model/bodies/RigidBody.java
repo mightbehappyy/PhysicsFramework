@@ -1,8 +1,11 @@
 package model.bodies;
 
+import controller.ShapeFactory;
+import model.enums.ShapesEnum;
 import model.scenes.Scene;
 import model.shapes.Shape2D;
-import model.vectors.Force;
+import model.vectors.Vector;
+import model.vectors.interfaces.Force;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +15,15 @@ public class RigidBody {
     private List<Force> forces = new ArrayList<>();
     private final Shape2D shape2D;
 
-    public RigidBody(Shape2D shape2D) {
-        this.shape2D = shape2D;
+    public RigidBody(ShapesEnum shape, int xPosition, int yPosition, int height, int width, int mass) {
+        this.shape2D =  ShapeFactory.createShape2D(shape, new Vector(xPosition, yPosition, height), height, width);
     }
 
-    public void instanciate() {
+    public RigidBody(ShapesEnum shape, int xPosition, int yPosition, int diameter, int mass) {
+        this.shape2D =  ShapeFactory.createShape2D(shape, new Vector(xPosition, yPosition, diameter), diameter, diameter);
+    }
+
+    public void instantiate() {
         Scene.getInstance().addObject(this);
     }
 

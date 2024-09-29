@@ -1,13 +1,13 @@
 package model.vectors;
 
-public class Body {
+public class Vector {
     private int xPosition;
     private int yPosition;
     private int xLinearVelocity;
     private int yLinearVelocity;
     private final int mass;
 
-    public Body(int xPosition, int yPosition, int mass) {
+    public Vector(int xPosition, int yPosition, int mass) {
         this.xPosition = xPosition;
         this.yPosition = yPosition;
         this.mass = mass;

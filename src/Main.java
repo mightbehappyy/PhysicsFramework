@@ -1,20 +1,18 @@
 import model.bodies.RigidBody;
+import model.enums.ShapesEnum;
 import model.shapes.Circle;
 import model.shapes.Square;
-import model.vectors.Body;
+import model.vectors.Vector;
 import view.Simulation;
 
 public class Main {
     public static void main(String[] args) {
         new Simulation();
-        Body body = new Body(300, 50, 1);
-        Circle circle = new Circle(body, 10);
-        RigidBody rigidBody = new RigidBody(circle);
-        rigidBody.instanciate();
 
-        Body body2 = new Body(500, 50, 1);
-        Square square = new Square(10, body2);
-        RigidBody rigidBody2 = new RigidBody(square);
-        rigidBody2.instanciate();
+        RigidBody rigidBody = new RigidBody(ShapesEnum.CIRCLE, 300, 50, 30, 5);
+        rigidBody.instantiate();
+
+        RigidBody rigidBody2 = new RigidBody(ShapesEnum.SQUARE, 600, 100, 10, 5);
+        rigidBody2.instantiate();
     }
 }

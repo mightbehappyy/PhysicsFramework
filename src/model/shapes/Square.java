@@ -1,20 +1,13 @@
 package model.shapes;
 
-import model.vectors.Body;
+import model.vectors.Vector;
 
-import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
 public class Square extends Shape2D{
 
-    public Square(int side, Body body) {
-        super(side, side, body);
+    public Square() {
 
-    }
-
-    @Override
-    public void draw(Graphics2D g) {
-        g.draw(getShape());
     }
 
     @Override

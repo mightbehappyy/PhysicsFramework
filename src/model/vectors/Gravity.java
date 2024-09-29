@@ -1,6 +1,8 @@
 package model.vectors;
 
-public class Gravity implements Force{
+import model.vectors.interfaces.Force;
+
+public class Gravity implements Force {
 
     private final int acceleration;
 
@@ -9,7 +11,7 @@ public class Gravity implements Force{
     }
 
     @Override
-    public void apply(Body body, int deltaTime) {
-        body.setYLinearVelocity(body.getYLinearVelocity() + acceleration * deltaTime);
+    public void apply(Vector vector, int deltaTime) {
+        vector.setYLinearVelocity(vector.getYLinearVelocity() + acceleration * deltaTime);
     }
 }

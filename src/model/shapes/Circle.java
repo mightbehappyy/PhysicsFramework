@@ -1,19 +1,13 @@
 package model.shapes;
 
-import model.vectors.Body;
+import model.vectors.Vector;
 
-import java.awt.*;
 import java.awt.geom.Ellipse2D;
 
 public class Circle extends Shape2D {
 
-    public Circle(Body body, int diameter) {
-        super(diameter, diameter, body);
-    }
+    public Circle() {
 
-    @Override
-    public void draw(Graphics2D g) {
-        g.draw(getShape());
     }
 
     @Override

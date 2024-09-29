@@ -1,25 +1,31 @@
 package model.shapes;
 
-import model.vectors.Body;
+import model.vectors.Vector;
 
 import java.awt.*;
 
 public abstract class Shape2D {
-    private final Body body;
+    private Vector vector;
     protected Shape shape;
 
-    public Shape2D(int width, int height, Body body) {
-        this.body = body;
-        setShape(width, height);
+    public Shape2D() {
+
     }
 
-    public abstract void draw(Graphics2D g);
+    public void draw(Graphics2D g) {
+        g.draw(getShape());
+    }
+
+    public void setVector(Vector vector) {
+        this.vector = vector;
+    }
 
     public abstract void setShape(int width, int height);
 
-    public Body getBody() {
-        return body;
+    public Vector getBody() {
+        return vector;
     }
+
     public Shape getShape() {
         return shape;
     }

@@ -12,5 +12,4 @@ public class Frame {
         jframe.setLocationRelativeTo(null);
         jframe.setVisible(true);
     }
-
 }

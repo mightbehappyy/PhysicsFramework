@@ -7,25 +7,46 @@ import java.awt.*;
 
 public class Panel extends JPanel {
 
-    private final int frameLimitation;
+    private final int frameLimit;
 
-    public Panel(int frameLimitation) {
-        this.frameLimitation = frameLimitation;
+    public Panel(int frameLimit) {
+        this.frameLimit = frameLimit;
     }
 
-    public void paintComponent(Graphics g) {
-        long startTime = System.currentTimeMillis();
+    @Override
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        Scene.getInstance().getDrawableBodies().forEach(p -> p.getShape2D().draw((Graphics2D) g));
-
-        limitUpdate(startTime, frameLimitation);
-        repaint();
+        Scene.getInstance().drawAllBodies((Graphics2D) g);
     }
 
-    public void limitUpdate(long startTime, int frameLimit) {
+    public void gameLoop() {
+        long lastTime = System.currentTimeMillis();
+        double timePerFrame = 1000.0 / frameLimit;
+
+        while (true) {
+            long currentTime = System.currentTimeMillis();
+            double deltaTime = (currentTime - lastTime) / 1000.0;
+            lastTime = currentTime;
+
+            updatePhysics(deltaTime);
+
+            repaint();
+
+            limitFrameRate(currentTime, timePerFrame);
+        }
+    }
+
+    private void updatePhysics(double deltaTime) {
+        Scene.getInstance().getDrawableBodies().forEach(body -> {
+            body.update(deltaTime);
+        });
+    }
+
+    private void limitFrameRate(long startTime, double timePerFrame) {
         long elapsedTime = System.currentTimeMillis() - startTime;
-        long waitTime = (1000 / frameLimit) - elapsedTime;
+        long waitTime = (long) (timePerFrame - elapsedTime);
+
         if (waitTime > 0) {
             try {
                 Thread.sleep(waitTime);

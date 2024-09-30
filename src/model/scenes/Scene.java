@@ -2,6 +2,7 @@ package model.scenes;
 
 import model.bodies.RigidBody;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +24,10 @@ public class Scene {
 
     public void addObject(RigidBody body) {
         drawableBodies.add(body);
+    }
+
+    public void drawAllBodies(Graphics2D graphics) {
+        drawableBodies.forEach(drawableBodies -> drawableBodies.getShape2D().draw(graphics));
     }
     public List<RigidBody> getDrawableBodies() {
         return drawableBodies;

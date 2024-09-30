@@ -4,14 +4,14 @@ import model.vectors.interfaces.Force;
 
 public class Gravity implements Force {
 
-    private final int acceleration;
+    private final double acceleration;
 
-    public Gravity(int acceleration) {
+    public Gravity(double acceleration) {
         this.acceleration = acceleration;
     }
 
     @Override
-    public void apply(Vector vector, int deltaTime) {
+    public void apply(Vector vector, double deltaTime) {
         vector.setYLinearVelocity(vector.getYLinearVelocity() + acceleration * deltaTime);
     }
 }

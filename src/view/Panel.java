@@ -1,5 +1,6 @@
 package view;
 
+import controller.CollisionObserver;
 import model.scenes.Scene;
 
 import javax.swing.JPanel;
@@ -8,16 +9,18 @@ import java.awt.*;
 public class Panel extends JPanel {
 
     private final int frameLimit;
+    private final CollisionObserver collisionObserver;
 
     public Panel(int frameLimit) {
         this.frameLimit = frameLimit;
+        this.collisionObserver = new CollisionObserver(Scene.getInstance());
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-
         Scene.getInstance().drawAllBodies((Graphics2D) g);
+        repaint();
     }
 
     public void gameLoop() {
@@ -30,9 +33,6 @@ public class Panel extends JPanel {
             lastTime = currentTime;
 
             updatePhysics(deltaTime);
-
-            repaint();
-
             limitFrameRate(currentTime, timePerFrame);
         }
     }
@@ -41,6 +41,7 @@ public class Panel extends JPanel {
         Scene.getInstance().getDrawableBodies().forEach(body -> {
             body.update(deltaTime);
         });
+        collisionObserver.checkForCollision();
     }
 
     private void limitFrameRate(long startTime, double timePerFrame) {

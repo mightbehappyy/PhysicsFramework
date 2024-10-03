@@ -26,9 +26,9 @@ public class RigidBody {
         this.mass = mass;
     }
 
-    public RigidBody(ShapesEnum shape, int xPosition, int yPosition, int diameter, int mass) {
-        this.vector = new Vector(xPosition, yPosition, diameter);
-        this.shape2D =  ShapeFactory.createShape2D(shape, new Vector(xPosition, yPosition, diameter), diameter, diameter);
+    public RigidBody(ShapesEnum shape, int xPosition, int yPosition, int size, int mass) {
+        this.vector = new Vector(xPosition, yPosition, size);
+        this.shape2D =  ShapeFactory.createShape2D(shape, new Vector(xPosition, yPosition, size), size, size);
         this.shapesEnum = shape;
         this.mass = mass;
     }
@@ -41,10 +41,12 @@ public class RigidBody {
 
         vector.setXPosition(vector.getXPosition() + vector.getXLinearVelocity());
         vector.setYPosition(vector.getYPosition() + vector.getYLinearVelocity());
-        if (vector.getYPosition() >= 500) {
-            vector.setYPosition(500);
-        }
         System.out.println(vector.getYPosition());
+
+        if (vector.getYPosition() >= 550) {
+            vector.setYLinearVelocity(0);
+            vector.setYPosition(550);
+        }
 
         this.shape2D =  ShapeFactory.createShape2D(
                 shapesEnum,
@@ -54,6 +56,15 @@ public class RigidBody {
                 );
 
         applyForces(deltaTime);
+    }
+
+
+    public void setVectorYVelocity(double yVelocity) {
+        this.vector.setYLinearVelocity(yVelocity);
+    }
+
+    public void setVectorXVelocity(double xVelocity) {
+        this.vector.setXLinearVelocity(xVelocity);
     }
 
     public void applyForces(double deltaTime) {
@@ -72,5 +83,13 @@ public class RigidBody {
 
     public Shape2D getShape2D() {
         return shape2D;
+    }
+
+    public Vector getVector() {
+        return vector;
+    }
+
+    public ShapesEnum getShapesEnum() {
+        return shapesEnum;
     }
 }

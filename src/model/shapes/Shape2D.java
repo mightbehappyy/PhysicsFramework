@@ -2,7 +2,9 @@ package model.shapes;
 
 import model.vectors.Vector;
 
-import java.awt.*;
+import java.awt.Shape;
+import java.awt.Graphics2D;
+
 
 public abstract class Shape2D {
     protected Shape shape;

@@ -1,5 +1,6 @@
 package model.scenes;
 
+import controller.CollisionObserver;
 import model.bodies.RigidBody;
 
 import java.awt.*;
@@ -7,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Scene {
-    private List<RigidBody> drawableBodies;
+    private final List<RigidBody> drawableBodies;
 
     private static Scene instance = null;
 

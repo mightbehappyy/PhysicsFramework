@@ -36,7 +36,7 @@ public class Panel extends JPanel {
 
             if (delta >= 1) {
                 updatePhysics(delta);
-                //limitFrameRate(now, timePerFrame);
+                limitFrameRate(now, timePerFrame);
 
                 delta--;
             }

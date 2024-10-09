@@ -24,16 +24,22 @@ public class Panel extends JPanel {
     }
 
     public void gameLoop() {
-        long lastTime = System.currentTimeMillis();
-        double timePerFrame = 1000.0 / frameLimit;
+        double timePerFrame = 1000000000 / frameLimit;
+        double delta = 0;
+        long now;
+        long lastTime = System.nanoTime();
 
         while (true) {
-            long currentTime = System.currentTimeMillis();
-            double deltaTime = (currentTime - lastTime) / 1000.0;
-            lastTime = currentTime;
+            now = System.nanoTime();
+            delta = (now - lastTime) / timePerFrame;
+            lastTime = now;
 
-            updatePhysics(deltaTime);
-            limitFrameRate(currentTime, timePerFrame);
+            if (delta >= 1) {
+                updatePhysics(delta);
+                //limitFrameRate(now, timePerFrame);
+
+                delta--;
+            }
         }
     }
 

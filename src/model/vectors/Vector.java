@@ -5,12 +5,10 @@ public class Vector {
     private double yPosition;
     private double xLinearVelocity;
     private double yLinearVelocity;
-    private final int mass;
 
-    public Vector(double xPosition, double yPosition, int mass) {
+    public Vector(double xPosition, double yPosition) {
         this.xPosition = xPosition;
         this.yPosition = yPosition;
-        this.mass = mass;
     }
 
     public double getXPosition() {
@@ -29,9 +27,6 @@ public class Vector {
         return yLinearVelocity;
     }
 
-    public int getMass() {
-        return mass;
-    }
 
     public void setXPosition(double xPosition) {
         this.xPosition = xPosition;

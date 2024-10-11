@@ -1,7 +1,6 @@
 package model.shapes;
 
-import model.vectors.Vector;
-
+import java.awt.*;
 import java.awt.geom.Ellipse2D;
 
 public class Circle extends Shape2D {

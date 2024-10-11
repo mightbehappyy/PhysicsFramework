@@ -1,7 +1,5 @@
 package model.shapes;
 
-import model.vectors.Vector;
-
 import java.awt.geom.Rectangle2D;
 
 public class Square extends Shape2D{
@@ -15,4 +13,5 @@ public class Square extends Shape2D{
         this.shape = new Rectangle2D.Double
                 (vector.getXPosition(), vector.getYPosition(), width, height);
     }
+
 }

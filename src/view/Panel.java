@@ -5,9 +5,12 @@ import model.scenes.Scene;
 
 import javax.swing.JPanel;
 import java.awt.*;
+import java.lang.management.OperatingSystemMXBean;
+import java.util.Objects;
 
 public class Panel extends JPanel {
 
+    private static String OS = System.getProperty("os.name").toLowerCase();
     private final int frameLimit;
     private final CollisionObserver collisionObserver;
 
@@ -18,22 +21,31 @@ public class Panel extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        Scene.getInstance().drawAllBodies((Graphics2D) g);
-        repaint();
+        if (Objects.equals(OS, "linux")) {
+            Toolkit.getDefaultToolkit().sync();
+        }
+
+
+        Graphics2D g2d = (Graphics2D) g.create();
+        super.paintComponent(g2d);
+
+        Scene.getInstance().drawAllBodies(g2d);
+
+        g2d.dispose();
     }
 
     public void gameLoop() {
         long lastTime = System.currentTimeMillis();
         double timePerFrame = 1000.0 / frameLimit;
-
         while (true) {
             long currentTime = System.currentTimeMillis();
             double deltaTime = (currentTime - lastTime) / 1000.0;
             lastTime = currentTime;
 
             updatePhysics(deltaTime);
+            repaint();
             limitFrameRate(currentTime, timePerFrame);
+
         }
     }
 

@@ -1,12 +1,11 @@
 package controller;
 import model.enums.ShapesEnum;
-import model.shapes.Circle;
-import model.shapes.Rectangle;
-import model.shapes.Shape2D;
+import model.shapes.*;
 
 import java.awt.*;
 import java.util.Map;
-import model.shapes.Square;
+
+import model.shapes.Rectangle;
 import model.vectors.Vector;
 
 public class ShapeFactory {
@@ -14,7 +13,10 @@ public class ShapeFactory {
     private final Map<ShapesEnum, Shape2D> shapesMap = Map.of(
             ShapesEnum.CIRCLE, new Circle(),
             ShapesEnum.SQUARE, new Square(),
-            ShapesEnum.RECTANGLE, new Rectangle()
+            ShapesEnum.RECTANGLE, new Rectangle(),
+            ShapesEnum.CIRCLEFILLED, new CircleFilled(),
+            ShapesEnum.SQUAREFILLED, new SquareFilled(),
+            ShapesEnum.RECTANGLEFILLED, new RectangleFilled()
     );
 
     public ShapeFactory() {

@@ -1,5 +1,6 @@
 package model.shapes;
 
+import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
 public class Square extends Shape2D{

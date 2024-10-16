@@ -1,5 +1,6 @@
 package model.bodies;
 
+import controller.CollisionManager;
 import controller.ShapeFactory;
 import model.enums.ForceEnum;
 import model.enums.ShapesEnum;
@@ -13,6 +14,8 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static view.Frame.HEIGHT;
+
 public class RigidBody {
 
     private Shape2D shape2D;
@@ -20,7 +23,6 @@ public class RigidBody {
     private final List<IForce> IForces = new ArrayList<>();
     private final ShapesEnum shapesEnum;
     private final int mass;
-    private boolean isColliding = false;
     private Color color;
 
     public RigidBody(ShapesEnum shape, Color color, int xPosition, int yPosition, int height, int width, int mass) {
@@ -47,9 +49,9 @@ public class RigidBody {
         this.vector.setXPosition(this.vector.getXPosition() + this.vector.getXLinearVelocity());
         this.vector.setYPosition(this.vector.getYPosition() + this.vector.getYLinearVelocity());
 
-        if (this.vector.getYPosition() >= 550) {
+        if (this.vector.getYPosition() >= HEIGHT  - this.getShape2D().getShape().getBounds().height) {
             vector.setYLinearVelocity(0);
-            vector.setYPosition(550);
+            vector.setYPosition(HEIGHT  - this.getShape2D().getShape().getBounds().height);
         }
 
         this.shape2D =  new ShapeFactory().createShape2D(
@@ -62,14 +64,6 @@ public class RigidBody {
         applyForces(deltaTime);
     }
 
-    public void setVectorYVelocity(double yVelocity) {
-        this.vector.setYLinearVelocity(yVelocity);
-    }
-
-    public void setVectorXVelocity(double xVelocity) {
-        this.vector.setXLinearVelocity(xVelocity);
-    }
-
     public void applyForces(double deltaTime) {
         for (IForce IForce : IForces) {
             IForce.apply(vector, deltaTime);
@@ -78,6 +72,14 @@ public class RigidBody {
 
     public void addForce(ForceEnum force, double acceleration) {
         IForces.add(new ForceManager().getForce(force, acceleration));
+    }
+
+    public void setCollisionOn() {
+        CollisionManager.getInstance().addCollidableBody(this);
+    }
+
+    public void setCollisionOff() {
+        CollisionManager.getInstance().removeCollidableBody(this);
     }
 
     public List<IForce> getForces() {
@@ -98,13 +100,5 @@ public class RigidBody {
 
     public ShapesEnum getShapesEnum() {
         return shapesEnum;
-    }
-
-    public boolean isColliding() {
-        return isColliding;
-    }
-
-    public void setColliding(boolean colliding) {
-        isColliding = colliding;
     }
 }

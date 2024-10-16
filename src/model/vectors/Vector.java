@@ -27,7 +27,6 @@ public class Vector {
         return yLinearVelocity;
     }
 
-
     public void setXPosition(double xPosition) {
         this.xPosition = xPosition;
     }

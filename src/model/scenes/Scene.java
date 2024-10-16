@@ -1,12 +1,9 @@
 package model.scenes;
 
-import controller.CollisionObserver;
 import model.bodies.RigidBody;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Scene {

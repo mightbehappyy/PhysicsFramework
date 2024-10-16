@@ -1,24 +1,20 @@
-import model.bodies.RigidBody;
-import model.enums.ShapesEnum;
-import model.vectors.Gravity;
-import view.Simulation;
+    import model.bodies.RigidBody;
+    import model.enums.ForceEnum;
+    import model.enums.ShapesEnum;
 
-public class Main {
-    public static void main(String[] args) {
-        new Simulation();
+    import service.PhysicsMethods;
+    import view.Simulation;
 
-        RigidBody rigidBody = new RigidBody(ShapesEnum.CIRCLE, 0, 550, 30, 5);
-        rigidBody.addForce(new Gravity(9.8));
-        rigidBody.setVectorXVelocity(2.0);
-        rigidBody.setVectorYVelocity(-6.0);
-        rigidBody.instantiate();
+    import java.awt.*;
 
-        RigidBody rigidBody2 = new RigidBody(ShapesEnum.SQUARE, 0, 550, 30, 5);
-        rigidBody2.addForce(new Gravity(9.8));
-        rigidBody2.setVectorXVelocity(0.5);
-        rigidBody2.setVectorYVelocity(-6.0);
-        rigidBody2.instantiate();
+    public class Main {
+        public static void main(String[] args) {
+            new Simulation();
 
-
+            RigidBody rigidBody4 = new RigidBody(ShapesEnum.CIRCLEFILLED, Color.BLACK,20, 850, 20, 100);
+            rigidBody4.instantiate();
+            rigidBody4.addForce(ForceEnum.DOWN, 9.8);
+            rigidBody4.setCollisionOn();
+            PhysicsMethods.obliqueLaunch(rigidBody4, 70, 5);
+        }
     }
-}

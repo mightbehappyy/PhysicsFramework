@@ -1,5 +1,5 @@
 package model.enums;
 
 public enum ShapesEnum {
-    CIRCLE, SQUARE
+    CIRCLE, SQUARE, RECTANGLE, CIRCLEFILLED, SQUAREFILLED, RECTANGLEFILLED;
 }

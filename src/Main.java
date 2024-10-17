@@ -3,13 +3,15 @@
     import model.enums.ShapesEnum;
 
     import service.PhysicsMethods;
+    import view.PhysicsSimulator;
     import view.Simulation;
 
     import java.awt.*;
 
     public class Main {
         public static void main(String[] args) {
-            new Simulation();
+            PhysicsSimulator simulator = new PhysicsSimulator();
+            simulator.start();
 
             RigidBody rigidBody4 = new RigidBody(ShapesEnum.CIRCLEFILLED, Color.BLACK,20, 850, 20, 100);
             rigidBody4.instantiate();

@@ -1,32 +1,33 @@
-package model.shapes;
+    package model.shapes;
 
-import model.vectors.Vector;
+    import model.vectors.Vector;
 
-import java.awt.*;
+    import java.awt.*;
 
-public abstract class Shape2D {
-    private Vector vector;
-    protected Shape shape;
+    public abstract class Shape2D {
+        protected Shape shape;
+        protected Vector vector;
+        protected Color color;
+        public Shape2D() {
 
-    public Shape2D() {
+        }
 
+        public abstract void setShape(int width, int height);
+
+        public void draw(Graphics2D g) {
+            g.setColor(color);
+            g.draw(shape);
+        }
+
+        public void setVector(Vector vector) {
+            this.vector = vector;
+        }
+
+        public Shape getShape() {
+            return shape;
+        }
+
+        public void setColor(Color color) {
+            this.color = color;
+        }
     }
-
-    public void draw(Graphics2D g) {
-        g.draw(getShape());
-    }
-
-    public void setVector(Vector vector) {
-        this.vector = vector;
-    }
-
-    public abstract void setShape(int width, int height);
-
-    public Vector getBody() {
-        return vector;
-    }
-
-    public Shape getShape() {
-        return shape;
-    }
-}

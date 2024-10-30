@@ -1,51 +1,43 @@
 package model.vectors;
 
 public class Vector {
-    private int xPosition;
-    private int yPosition;
-    private int xLinearVelocity;
-    private int yLinearVelocity;
-    private final int mass;
+    private double xPosition;
+    private double yPosition;
+    private double xLinearVelocity;
+    private double yLinearVelocity;
 
-    public Vector(int xPosition, int yPosition, int mass) {
+    public Vector(double xPosition, double yPosition) {
         this.xPosition = xPosition;
         this.yPosition = yPosition;
-        this.mass = mass;
-        this.xLinearVelocity = 0;
-        this.yLinearVelocity = 0;
     }
 
-    public int getXPosition() {
+    public double getXPosition() {
         return xPosition;
     }
 
-    public int getYPosition() {
+    public double getYPosition() {
         return yPosition;
     }
 
-    public int getXLinearVelocity() {
+    public double getXLinearVelocity() {
         return xLinearVelocity;
     }
 
-    public int getYLinearVelocity() {
+    public double getYLinearVelocity() {
         return yLinearVelocity;
     }
 
-    public int getMass() {
-        return mass;
-    }
-
-    public void setXPosition(int xPosition) {
+    public void setXPosition(double xPosition) {
         this.xPosition = xPosition;
     }
 
-    public void setYPosition(int yPosition) {
+    public void setYPosition(double yPosition) {
         this.yPosition = yPosition;
     }
-    public void setXLinearVelocity(int xLinearVelocity) {
+    public void setXLinearVelocity(double xLinearVelocity) {
         this.xLinearVelocity = xLinearVelocity;
     }
-    public void setYLinearVelocity(int yLinearVelocity) {
+    public void setYLinearVelocity(double yLinearVelocity) {
         this.yLinearVelocity = yLinearVelocity;
     }
 
